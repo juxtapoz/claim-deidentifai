@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+
+// Custom palette with more modern colors
+$primary: mat.define-palette(mat.$blue-grey-palette, 200);  // Lighter blue-grey
+$accent: mat.define-palette(mat.$cyan-palette, A200);
+$warn: mat.define-palette(mat.$red-palette, A200);
+
+// Create dark theme
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Apply dark theme by default
+@include mat.all-component-themes($dark-theme);
+
+// Modern dark theme styling
+.mat-app-background {
+  background: #1a1a1a;  // Darker but not pure black
+  color: rgba(255, 255, 255, 0.87);  // More readable white
+  min-height: 100vh;
+}
+
+.mat-mdc-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+.mat-mdc-raised-button.mat-primary {
+  background: linear-gradient(135deg, #64B5F6, #4FC3F7) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+} 

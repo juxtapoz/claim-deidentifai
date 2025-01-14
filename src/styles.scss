@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use './styles/theme.scss';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #1f2937;
+  color: #e5e7eb;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Add some shine and modern effects
+.mat-mdc-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Status cards glow effect
+app-status-card .mat-mdc-card {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+}
