@@ -1,14 +1,12 @@
 import sys
 import os
-from pathlib import Path
 
-# Add the project directory to Python path
-BASE_DIR = Path(__file__).resolve().parent
-if str(BASE_DIR) not in sys.path:
-    sys.path.append(str(BASE_DIR))
+# Add the ai-services directory to Python path
+path = os.path.dirname(os.path.abspath(__file__))
+if path not in sys.path:
+    sys.path.append(path)
 
 from src.deidentification_service import app
-import uvicorn.workers
 
-# Create ASGI application
+# Create WSGI application
 application = app
