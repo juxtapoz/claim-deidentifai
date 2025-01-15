@@ -1,5 +1,4 @@
 fastapi
-uvicorn
+uvicorn[standard]
 python-multipart
 python-dateutil
-hypercorn>=0.14.3 
