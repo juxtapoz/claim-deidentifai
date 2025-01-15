@@ -5,9 +5,9 @@ import uvicorn
 import logging
 from typing import Dict
 import json
-from src.processors.edi_parser import EDIParser
-from src.processors.phi_detector import PHIDetector
-from src.processors.deidentifier import Deidentifier
+from processors.edi_parser import EDIParser
+from processors.phi_detector import PHIDetector
+from processors.deidentifier import Deidentifier
 
 app = FastAPI(title="837 De-identifAI Service")
 
