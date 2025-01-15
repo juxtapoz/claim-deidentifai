@@ -14,15 +14,33 @@ services:
     build:
       context: ./ai-services
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
     environment:
       - MODEL_PATH=/app/models
+      - AI_PROVIDER=local
     volumes:
       - ./ai-services/models:/app/models
-    command: >
-      sh -c "mkdir -p /app/models &&
-             python src/deidentification_service.py"
+      - ./ai-services/cache:/app/cache
+    deploy:
+      resources:
+        reservations:
+          memory: 8G
+    ports:
+      - "8000:8000"
+
+  model-service:
+    build:
+      context: ./model-services
+      dockerfile: Dockerfile.model
+    environment:
+      - MODEL_NAME=mistral-7b-instruct-v0.1.Q4_K_M.gguf
+    volumes:
+      - ./model-services/models:/models
+    deploy:
+      resources:
+        reservations:
+          memory: 8G
+    ports:
+      - "8001:8001"
 
   nginx:
     image: nginx:alpine

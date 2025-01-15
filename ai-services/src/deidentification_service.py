@@ -5,22 +5,25 @@ import uvicorn
 import logging
 from typing import Dict
 import json
-from processors.edi_parser import EDIParser
-from processors.phi_detector import PHIDetector
-from processors.deidentifier import Deidentifier
+from .processors.edi_parser import EDIParser
+from .processors.phi_detector import PHIDetector
+from .processors.deidentifier import Deidentifier
 
 app = FastAPI(title="837 De-identifAI Service")
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # Add your frontend URL
+    allow_origins=[
+        "https://sloveland.pythonanywhere.com",  # Your PythonAnywhere domain
+        "http://localhost:4200"  # For local development
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 class ProcessingResponse(BaseModel):
@@ -32,6 +35,7 @@ class ProcessingResponse(BaseModel):
 
 @app.post("/api/process", response_model=ProcessingResponse)
 async def process_edi_file(file: UploadFile = File(...)):
+    logger.debug(f"API endpoint called at {app.root_path}")
     try:
         logger.info(f"Received file: {file.filename}")
         if not file.filename.endswith(('.edi', '.txt')):

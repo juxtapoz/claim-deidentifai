@@ -40,3 +40,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+"eval /"$(ssh-agent -s)/".pub"
+
+"eval /"$(ssh-agent -s)/""
+
+# Environments
+/src/environments/environment.ts
+/src/environments/environment.*.ts
+!/src/environments/environment.prod.ts

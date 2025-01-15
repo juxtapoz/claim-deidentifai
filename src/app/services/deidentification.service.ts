@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -11,7 +11,7 @@ export class DeidentificationService {
 
   constructor(private http: HttpClient) {}
 
-  processFile(file: File): Observable<any> {
+  processFile(file: File): Observable<HttpEvent<any>> {
     const formData = new FormData();
     formData.append('file', file);
 

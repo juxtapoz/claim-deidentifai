@@ -1,1 +1,8 @@
- 
+# Enable WSGI
+AddHandler wsgi-script .py
+Options +ExecCGI
+
+# Rewrite rules for FastAPI
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /path/to/wsgi.py/$1 [QSA,L] 
