@@ -36,7 +36,7 @@ class ProcessingResponse(BaseModel):
     file_content: str = None
     errors: Dict = None
 
-@app.post("/api/process", response_model=ProcessingResponse)
+@app.post("/process", response_model=ProcessingResponse)
 async def process_edi_file(file: UploadFile = File(...)):
     logger.debug(f"API endpoint called at {app.root_path}")
     try:
