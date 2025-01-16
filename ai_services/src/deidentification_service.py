@@ -16,7 +16,10 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://sloveland.pythonanywhere.com",  # Your PythonAnywhere domain
-        "http://localhost:4200"  # For local development
+        "http://sloveland.pythonanywhere.com",   # HTTP version
+        "https://www.sloveland.pythonanywhere.com", # www subdomain
+        "http://localhost:4200",  # For local development
+        "http://localhost"        # For local development without port
     ],
     allow_credentials=True,
     allow_methods=["*"],
