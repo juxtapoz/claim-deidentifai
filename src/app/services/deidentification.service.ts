@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class DeidentificationService {
-  private apiUrl = `${environment.apiUrl}/process`;
+  private apiUrl = `${environment.apiUrl}/api/process`;
 
   constructor(private http: HttpClient) {}
 

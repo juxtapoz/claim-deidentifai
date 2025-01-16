@@ -10,7 +10,7 @@ if ai_services_path not in sys.path:
     sys.path.insert(0, ai_services_path)
 
 from src.deidentification_service import app
-from asgiref.wsgi import WsgiToAsgi
+import uvicorn.middleware.wsgi
 
 # Create WSGI application
-application = WsgiToAsgi(app)
+application = app
